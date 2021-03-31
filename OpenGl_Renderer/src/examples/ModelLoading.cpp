@@ -16,7 +16,7 @@ namespace scene {
 		: m_YRotation(0.f), m_Increment(0.05f)
 	{
 
-		LoadModel("res/models/Mask/obj.obj");
+		LoadModel("res/models/Nanosuit/nanosuit.obj");
 
 		/* Enable Blending */
 		GLCALL(glEnable(GL_BLEND));
@@ -32,17 +32,11 @@ namespace scene {
 		m_Light.Diffuse = glm::vec3(0.5f, 0.5f, 0.5f);
 		m_Light.Specular = glm::vec3(1.f, 1.f, 1.f);
 
-		/* Create a perspecti*/
-		m_Camera = std::make_unique<PerspectiveCamera>(glm::vec3(2.5f, 2.f, 25.f), 70.f, 16.f / 9.f, 0.1f, 1000.f);
+		/* Create a perspective camera */
+		m_Camera = std::make_unique<PerspectiveCamera>(glm::vec3(-2.5f, 8.f, 25.f), 70.f, 16.f / 9.f, 0.1f, 1000.f);
 
 
 		m_Shader = std::make_unique<Shader>("res/shaders/Model3D.shader");
-		m_Shader->Bind();
-		m_Shader->SetUniform3f("u_Light.Position", m_Light.Position.x, m_Light.Position.y, m_Light.Position.z);
-		m_Shader->SetUniform3f("u_Light.Ambient", m_Light.Ambient.x, m_Light.Ambient.y, m_Light.Ambient.z);
-		m_Shader->SetUniform3f("u_Light.Diffuse", m_Light.Diffuse.x, m_Light.Diffuse.y, m_Light.Diffuse.z);
-		m_Shader->SetUniform3f("u_Light.Specular", m_Light.Specular.x, m_Light.Specular.y, m_Light.Specular.z);
-
 	}
 
 	ModelLoader::~ModelLoader()
@@ -78,11 +72,11 @@ namespace scene {
 			m_Shader->SetUniform3f("u_Light.Ambient", m_Light.Ambient.x, m_Light.Ambient.y, m_Light.Ambient.z);
 			m_Shader->SetUniform3f("u_Light.Diffuse", m_Light.Diffuse.x, m_Light.Diffuse.y, m_Light.Diffuse.z);
 			m_Shader->SetUniform3f("u_Light.Specular", m_Light.Specular.x, m_Light.Specular.y, m_Light.Specular.z);
-			//renderer.DrawArray(*m_VAO, *m_Shader, 0, m_VertexData.size());
 			for (int i = 0; i < m_Meshes.size(); i++)
 				m_Meshes[i].OnRender(*m_Shader);
-		}
+
 	}
+		}
 
 	void ModelLoader::OnImGuiRender()
 	{
@@ -189,6 +183,7 @@ namespace scene {
 		
 		ProcessNode(scene->mRootNode, scene);
 	}
+	
 	void ModelLoader::ProcessNode(aiNode* node, const aiScene* scene)
 	{
 		for (unsigned int i = 0; i < node->mNumMeshes; i++)
@@ -215,24 +210,18 @@ namespace scene {
 			vertex.Position = pos;
 			glm::vec3 norm(mesh->mNormals[i].x, mesh->mNormals[i].y, mesh->mNormals[i].z);
 			vertex.Normal = pos;
-			glm::vec2 texc;
 
 			if (mesh->mTextureCoords[0])
 			{
 				glm::vec2 tex(mesh->mTextureCoords[0][i].x, mesh->mTextureCoords[0][i].y);
-				texc.x = mesh->mTextureCoords[0][i].x;
-				texc.x = mesh->mTextureCoords[0][i].y;
 				vertex.TexCoords = tex;
 			}
 			else
 			{
-				texc.x = 0.f;
-				texc.x = 0.f;
 				vertex.TexCoords = glm::vec2(0.f, 0.f);
 			}
 
 			vertices.push_back(vertex);
-			m_VertexData.push_back({pos,norm,texc});
 		}
 
 		for (unsigned int i = 0; i < mesh->mNumFaces; i++)
@@ -241,7 +230,6 @@ namespace scene {
 			for (unsigned int j = 0; j < face.mNumIndices; j++)
 			{
 				indices.push_back(face.mIndices[j]);
-				//m_IndicesData.push_back(face.mIndices[j]);
 			}
 		}
 

@@ -17,13 +17,6 @@
 
 namespace scene
 {
-	struct VertexD
-	{
-		glm::vec3 Position;
-		glm::vec3 Normal;
-		glm::vec2 TexCoord;
-	};
-
 	struct Material
 	{
 		glm::vec3 Ambient;
@@ -44,13 +37,10 @@ namespace scene
 	class ModelLoader : public Scene
 	{
 	private:
-		std::unique_ptr<VertexArray> m_VAO;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<PerspectiveCamera> m_Camera;
 
-		std::vector<VertexD> m_VertexData;
+
 		std::vector<TextureLayout> m_LoadedTextures;
 		std::vector<Mesh> m_Meshes;
 		Light m_Light;

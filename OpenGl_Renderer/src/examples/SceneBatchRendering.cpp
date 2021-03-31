@@ -6,12 +6,15 @@
 #include "Renderer.h"
 
 #include <array>
+#include <algorithm>
+#include <vector>
 
 namespace scene
 {
 	BatchRenderer::BatchRenderer()
 	{
 		m_Camera = std::make_unique<OrthographicCamera>(-16.f, 16.f, -9.f, 9.f);
+
 		m_VAO = std::make_unique<VertexArray>();
 		m_VertexBuffer = std::make_unique<VertexBuffer>(nullptr, sizeof(Vertex) * 1000, GL_DYNAMIC_DRAW);
 		VertexBufferLayout layout;

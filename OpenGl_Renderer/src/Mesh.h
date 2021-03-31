@@ -40,7 +40,7 @@ private:
 
 
 public:
-	Mesh(const std::vector<VertexLayout> vertices, std::vector<unsigned int> indices, std::vector<TextureLayout> textures)
+	Mesh(std::vector<VertexLayout> vertices, std::vector<unsigned int> indices, std::vector<TextureLayout> textures)
 		:m_Vertices(vertices), m_Indices(indices), m_TextureLayouts(textures)
 	{
 		SetupMesh();
@@ -84,8 +84,7 @@ private:
 
 		for (int i = 0; i < m_TextureLayouts.size(); i++)
 		{
-			if(m_TextureLayouts[i].Type == "u_Diffuse")
-				m_Textures.push_back(std::make_unique<Texture>(m_TextureLayouts[i].Path));
+			m_Textures.push_back(std::make_unique<Texture>(m_TextureLayouts[i].Path));
 		}
 	}
 };
