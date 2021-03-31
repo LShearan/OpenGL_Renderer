@@ -1,6 +1,5 @@
 # OpenGL_Renderer
- 
- Program to demonstrate to OpenGL Renderering Techniques
+Program to demonstrate to OpenGL Renderering Techniques
  
 ## Clear Colour
 ![GIF](CC.gif)
@@ -13,6 +12,9 @@
 
 ## 3D Model Loading
 ![GIF](ML.gif)
+
+## Importatn Notes
+When cloning for assimp to run you'll have to place the dll into the exe directory.
 
 ## External Libaries
 - GLFW
