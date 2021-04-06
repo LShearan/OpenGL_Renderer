@@ -16,7 +16,7 @@ namespace scene {
 		: m_YRotation(0.f), m_Increment(0.05f)
 	{
 
-		LoadModel("res/models/Nanosuit/nanosuit.obj");
+		LoadModel("res/models/Backpack/backpack.obj");
 
 		/* Enable Blending */
 		GLCALL(glEnable(GL_BLEND));
@@ -37,6 +37,11 @@ namespace scene {
 
 
 		m_Shader = std::make_unique<Shader>("res/shaders/Model3D.shader");
+		m_Shader->Bind();
+		m_DiffTexture = std::make_unique<Texture>(m_Directory + "/diffuse.jpg");
+		m_SpecTexture = std::make_unique<Texture>(m_Directory + "/specular.jpg");
+		m_Shader->SetUniform1i("u_Diffuse", 0);
+		m_Shader->SetUniform1i("u_Specular", 1);
 	}
 
 	ModelLoader::~ModelLoader()
@@ -60,7 +65,9 @@ namespace scene {
 		GLCALL(glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT));
 
 		
-		Renderer renderer;
+		m_DiffTexture->Bind(0);
+		m_SpecTexture->Bind(1);
+
 		{
 			glm::vec3 camPos = m_Camera->GetPosition();
 			glm::mat4 model = glm::rotate(glm::mat4(1.f), glm::radians(m_YRotation), glm::vec3(0.f, 1.f, 0.f));
@@ -73,10 +80,10 @@ namespace scene {
 			m_Shader->SetUniform3f("u_Light.Diffuse", m_Light.Diffuse.x, m_Light.Diffuse.y, m_Light.Diffuse.z);
 			m_Shader->SetUniform3f("u_Light.Specular", m_Light.Specular.x, m_Light.Specular.y, m_Light.Specular.z);
 			for (int i = 0; i < m_Meshes.size(); i++)
-				m_Meshes[i].OnRender(*m_Shader);
+				m_Meshes[i]->OnRender(*m_Shader);
 
-	}
 		}
+	}
 
 	void ModelLoader::OnImGuiRender()
 	{
@@ -197,10 +204,12 @@ namespace scene {
 		}
 	}
 
-	Mesh ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene, int index)
+	std::unique_ptr<Mesh> ModelLoader::ProcessMesh(aiMesh* mesh, const aiScene* scene, int index)
 	{
 		std::vector<VertexLayout> vertices;
+		vertices.reserve(mesh->mNumVertices);
 		std::vector<unsigned int> indices;
+		indices.reserve(mesh->mNumFaces);
 		std::vector<TextureLayout> textures;
 
 		for (unsigned int i = 0; i < mesh->mNumVertices; i++)
@@ -233,7 +242,7 @@ namespace scene {
 			}
 		}
 
-		if (mesh->mMaterialIndex >= 0)
+		/*if (mesh->mMaterialIndex >= 0)
 		{
 			aiMaterial* mat = scene->mMaterials[mesh->mMaterialIndex];
 			std::vector<TextureLayout> diffuseMaps = LoadMaterialTextures(mat,
@@ -248,14 +257,12 @@ namespace scene {
 
 			textures.insert(textures.end(), specularMaps.begin(), specularMaps.end());
 			
-		}
+		}*/
 
-
-		return Mesh(vertices, indices, textures);
+		return std::make_unique<Mesh>(vertices,indices);
 	}
-	std::vector<TextureLayout> ModelLoader::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
+	void ModelLoader::LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName)
 	{
-		std::vector<TextureLayout> textures;
 		for (unsigned int i = 0; i < mat->GetTextureCount(type); i++)
 		{
 			aiString str;
@@ -265,7 +272,7 @@ namespace scene {
 			{
 				if (std::strcmp(m_LoadedTextures[j].Path.data(), str.C_Str()) == 0)
 				{
-					textures.push_back(m_LoadedTextures[j]);
+					m_TextureLayouts.push_back(m_LoadedTextures[j]);
 					skip = true;
 					break;
 				}
@@ -276,10 +283,9 @@ namespace scene {
 				tex.ID = i;
 				tex.Type = typeName;
 				tex.Path = m_Directory + "/" + str.C_Str();
-				textures.push_back(tex);
+				m_TextureLayouts.push_back(tex);
 				m_LoadedTextures.push_back(tex);
 			}
 		}
-		return textures;
 	}
 }

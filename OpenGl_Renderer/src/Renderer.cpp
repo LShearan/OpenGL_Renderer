@@ -50,6 +50,10 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     shader.Bind();
 
     GLCALL(glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+
+    va.Unbind();
+    ib.Unbind();
+    shader.Unbind();
 }
 
 void Renderer::DrawWithType(unsigned int type, const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const

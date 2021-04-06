@@ -74,7 +74,4 @@ void main()
 
 	u_Colour = vec4(result, 1.f);
 
-	//u_Colour = vec4(texture(u_Diffuse, v_TexCoord));
-
-	//u_Colour = vec4(1.f, 0.f, 0.f, 1.f);
 }

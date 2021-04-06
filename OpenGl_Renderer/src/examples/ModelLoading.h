@@ -33,16 +33,26 @@ namespace scene
 		glm::vec3 Specular;
 	};
 
+	struct TextureLayout
+	{
+		unsigned int ID;
+		std::string Type;
+		std::string Path;
+	};
+
 
 	class ModelLoader : public Scene
 	{
 	private:
+		std::unique_ptr<Texture> m_DiffTexture;
+		std::unique_ptr<Texture> m_SpecTexture;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<PerspectiveCamera> m_Camera;
 
 
 		std::vector<TextureLayout> m_LoadedTextures;
-		std::vector<Mesh> m_Meshes;
+		std::vector<TextureLayout> m_TextureLayouts;
+		std::vector<std::unique_ptr<Mesh>> m_Meshes;
 		Light m_Light;
 
 		std::string m_Directory;
@@ -62,7 +72,7 @@ namespace scene
 		bool LoadOBJModel(const std::string& filepath);
 		void LoadModel(const std::string& filepath);
 		void ProcessNode(aiNode* node, const aiScene* scene);
-		Mesh ProcessMesh(aiMesh* mesh, const aiScene* scene, int index);
-		std::vector<TextureLayout> LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
+		std::unique_ptr<Mesh> ProcessMesh(aiMesh* mesh, const aiScene* scene, int index);
+		void LoadMaterialTextures(aiMaterial* mat, aiTextureType type, std::string typeName);
 	};
 }
