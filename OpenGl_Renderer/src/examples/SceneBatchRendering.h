@@ -33,6 +33,7 @@ namespace scene
 		float m_Quad1Position[2] = { 0.f, 0.f };
 		float m_Quad2Position[2] = { 1.5f, 0.f };
 
+		int m_NumberOfQuads;
 
 	public:
 		BatchRenderer();

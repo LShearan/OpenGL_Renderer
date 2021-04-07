@@ -32,6 +32,7 @@ private:
 
 
 public:
+
 	Mesh(std::vector<VertexLayout>& vertices, std::vector<unsigned int>& indices);
 	~Mesh();
 

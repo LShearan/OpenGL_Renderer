@@ -17,6 +17,13 @@
 
 namespace scene
 {
+	struct VertexD
+	{
+		glm::vec3 Position;
+		glm::vec3 Normal;
+		glm::vec2 TexCoord;
+	};
+
 	struct Material
 	{
 		glm::vec3 Ambient;
@@ -46,10 +53,14 @@ namespace scene
 	private:
 		std::unique_ptr<Texture> m_DiffTexture;
 		std::unique_ptr<Texture> m_SpecTexture;
+
+		std::unique_ptr<VertexArray> m_VAO;
+		std::unique_ptr<VertexBuffer> m_VertexBuffer;
+		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<PerspectiveCamera> m_Camera;
 
-
+		std::vector<VertexD> m_VertexData;
 		std::vector<TextureLayout> m_LoadedTextures;
 		std::vector<TextureLayout> m_TextureLayouts;
 		std::vector<std::unique_ptr<Mesh>> m_Meshes;
