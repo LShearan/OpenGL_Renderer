@@ -81,10 +81,10 @@
     <ClCompile Include="src\PerspectiveCamera.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\examples\ModelLoading.cpp">
+    <ClCompile Include="src\Mesh.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Mesh.cpp">
+    <ClCompile Include="src\examples\SceneSimpleLighting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -503,6 +503,8 @@
     <None Include="res\shaders\BatchQuads.shader" />
     <None Include="res\shaders\ModelLoader.shader" />
     <None Include="res\shaders\Model3D.shader" />
+    <None Include="res\shaders\SimpleLighting.shader" />
+    <None Include="res\shaders\PointLight.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Renderer.h">
@@ -1417,10 +1419,10 @@
     <ClInclude Include="src\PerspectiveCamera.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\examples\ModelLoading.h">
+    <ClInclude Include="src\Mesh.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Mesh.h">
+    <ClInclude Include="src\examples\SceneSimpleLighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

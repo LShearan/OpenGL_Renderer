@@ -33,6 +33,8 @@ public:
     void DrawArray(const VertexArray& va, const Shader& shader, int first, int size) const;
 
     void Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
+
+    void EndDraw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
     
     void DrawWithType(unsigned int type, const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const;
 

@@ -159,8 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\examples\ModelLoading.cpp" />
     <ClCompile Include="src\examples\SceneBatchRendering.cpp" />
+    <ClCompile Include="src\examples\SceneSimpleLighting.cpp" />
     <ClCompile Include="src\examples\SceneTexturedCube.cpp" />
     <ClCompile Include="src\examples\Scene.cpp" />
     <ClCompile Include="src\examples\SceneClearColour.cpp" />
@@ -190,6 +190,8 @@
     <None Include="res\shaders\ColouredCube.shader" />
     <None Include="res\shaders\Model3D.shader" />
     <None Include="res\shaders\ModelLoader.shader" />
+    <None Include="res\shaders\PointLight.shader" />
+    <None Include="res\shaders\SimpleLighting.shader" />
     <None Include="res\shaders\TexturedCube.shader" />
     <None Include="src\vendor\glm\detail\func_common.inl" />
     <None Include="src\vendor\glm\detail\func_common_simd.inl" />
@@ -329,8 +331,8 @@
     <None Include="src\vendor\glm\gtx\wrap.inl" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\examples\ModelLoading.h" />
     <ClInclude Include="src\examples\SceneBatchRendering.h" />
+    <ClInclude Include="src\examples\SceneSimpleLighting.h" />
     <ClInclude Include="src\examples\SceneTexturedCube.h" />
     <ClInclude Include="src\examples\SceneClearColour.h" />
     <ClInclude Include="src\examples\Scene.h" />

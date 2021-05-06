@@ -14,7 +14,8 @@ namespace scene
 		m_ForwardVector(glm::vec3(0.f, 0.f, -1.f)), m_RightVector(glm::vec3(1.f, 0.f, 0.f)),
 		m_UpVector(glm::vec3(0.f, 1.f, 0.f)),
 		m_Position(pos),
-		m_Rotation(0.f), m_CameraSpeed(0.04f)
+		m_Rotation(0.f), m_CameraSpeed(0.04f),
+		m_Pitch(0.f),m_Yaw(0.f),m_Roll(0.f)
 	{
 		m_Projection = glm::perspective(m_FOV, m_AspectRatio, m_zNear, m_zFar);
 		m_View = glm::lookAt(pos, m_Position + m_ForwardVector, m_UpVector);
@@ -76,9 +77,7 @@ namespace scene
 
 	void PerspectiveCamera::UpdateViewMatrix()
 	{
-		glm::mat4 transform = glm::translate(glm::mat4(1.f), m_Position);
-
-		m_View = glm::inverse(transform);
+		m_View = glm::lookAt(m_Position, m_Position + m_ForwardVector, m_UpVector);
 		m_ViewProjectionMatrix = m_Projection * m_View;
 	}
 }

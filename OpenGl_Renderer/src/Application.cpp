@@ -9,6 +9,7 @@
 #include "examples/SceneTexturedCube.h"
 #include "examples/SceneBatchRendering.h"
 #include "examples/ModelLoading.h"
+#include "examples/SceneSimpleLighting.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_opengl3.h"
@@ -73,7 +74,7 @@ int main(void)
         sceneMenu->RegisterTest<scene::ClearColour>("Clear Colour");
         sceneMenu->RegisterTest<scene::BatchRenderer>("2D Batch Renderer");
         sceneMenu->RegisterTest<scene::TexturedCube>("Textured Cube");
-        sceneMenu->RegisterTest<scene::ModelLoader>("Model Loading");
+        sceneMenu->RegisterTest<scene::SimpleLigthing>("Simple Lighting");
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window))
         {

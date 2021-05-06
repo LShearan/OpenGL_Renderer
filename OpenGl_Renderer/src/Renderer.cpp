@@ -56,6 +56,14 @@ void Renderer::Draw(const VertexArray& va, const IndexBuffer& ib, const Shader& 
     shader.Unbind();
 }
 
+void Renderer::EndDraw(const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const
+{
+    /* Bind the vertex array and index buffer and shader*/
+    va.Unbind();
+    ib.Unbind();
+    shader.Unbind();
+}
+
 void Renderer::DrawWithType(unsigned int type, const VertexArray& va, const IndexBuffer& ib, const Shader& shader) const
 {
     /* Bind the vertex array and index buffer and shader*/
@@ -64,4 +72,6 @@ void Renderer::DrawWithType(unsigned int type, const VertexArray& va, const Inde
     shader.Bind();
 
     GLCALL(glDrawElements(type, ib.GetCount(), GL_UNSIGNED_INT, nullptr));
+
+    EndDraw(va,ib,shader);
 }

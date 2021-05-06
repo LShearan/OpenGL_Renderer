@@ -86,7 +86,6 @@ namespace scene {
 			m_Shader->SetUniform3f("u_Light.Ambient", m_Light.Ambient.x, m_Light.Ambient.y, m_Light.Ambient.z);
 			m_Shader->SetUniform3f("u_Light.Diffuse", m_Light.Diffuse.x, m_Light.Diffuse.y, m_Light.Diffuse.z);
 			m_Shader->SetUniform3f("u_Light.Specular", m_Light.Specular.x, m_Light.Specular.y, m_Light.Specular.z);
-			//renderer.DrawArray(*m_VAO, *m_Shader, 0, m_VertexData.size());
 			for (int i = 0; i < m_Meshes.size(); i++)
 				m_Meshes[i]->OnRender(*m_Shader);
 
