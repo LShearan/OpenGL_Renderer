@@ -87,6 +87,9 @@
     <ClCompile Include="src\examples\SceneSimpleLighting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\examples\SceneMaterialLighting.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shaders\Basic.shader" />
@@ -505,6 +508,7 @@
     <None Include="res\shaders\Model3D.shader" />
     <None Include="res\shaders\SimpleLighting.shader" />
     <None Include="res\shaders\PointLight.shader" />
+    <None Include="res\shaders\MaterialLighting.shader" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Renderer.h">
@@ -1423,6 +1427,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\examples\SceneSimpleLighting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\examples\SceneMaterialLighting.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

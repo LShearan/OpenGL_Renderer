@@ -160,6 +160,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\examples\SceneBatchRendering.cpp" />
+    <ClCompile Include="src\examples\SceneMaterialLighting.cpp" />
     <ClCompile Include="src\examples\SceneSimpleLighting.cpp" />
     <ClCompile Include="src\examples\SceneTexturedCube.cpp" />
     <ClCompile Include="src\examples\Scene.cpp" />
@@ -188,6 +189,7 @@
     <None Include="res\shaders\Basic.shader" />
     <None Include="res\shaders\BatchQuads.shader" />
     <None Include="res\shaders\ColouredCube.shader" />
+    <None Include="res\shaders\MaterialLighting.shader" />
     <None Include="res\shaders\Model3D.shader" />
     <None Include="res\shaders\ModelLoader.shader" />
     <None Include="res\shaders\PointLight.shader" />
@@ -332,6 +334,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\examples\SceneBatchRendering.h" />
+    <ClInclude Include="src\examples\SceneMaterialLighting.h" />
     <ClInclude Include="src\examples\SceneSimpleLighting.h" />
     <ClInclude Include="src\examples\SceneTexturedCube.h" />
     <ClInclude Include="src\examples\SceneClearColour.h" />
