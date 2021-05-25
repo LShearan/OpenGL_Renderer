@@ -10,7 +10,10 @@ Program to demonstrate to OpenGL Renderering Techniques
 ## 3D Textured Cube
 ![GIF](TC.gif)
 
-## 3D Model Loading
+## 3D Simple Lighting
+![GIF](SL.gif)
+
+## 3D Material Lighting
 ![GIF](ML.gif)
 
 ## Importatn Notes
