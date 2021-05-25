@@ -2,6 +2,7 @@
 #include "Scene.h"
 #include "VertexBuffer.h"
 #include "VertexBufferLayout.h"
+#include "Mesh.h"
 #include "PerspectiveCamera.h"
 #include "Shader.h"
 
@@ -11,12 +12,10 @@ namespace scene
 	class SimpleLigthing : public Scene
 	{
 	private:
-		std::unique_ptr<VertexArray> m_VAO;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<Shader> m_PointLightShader;
 		std::unique_ptr<PerspectiveCamera> m_Camera;
+		std::unique_ptr<Mesh> m_Mesh;
 
 		float m_YRotation;
 		float m_Increment;

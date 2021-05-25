@@ -4,6 +4,7 @@
 #include "VertexBufferLayout.h"
 #include "PerspectiveCamera.h"
 #include "Shader.h"
+#include "Mesh.h"
 #include "Texture.h"
 
 namespace scene
@@ -12,13 +13,11 @@ namespace scene
 	class MaterialLighting : public Scene
 	{
 	private:
-		std::unique_ptr<VertexArray> m_VAO;
-		std::unique_ptr<VertexBuffer> m_VertexBuffer;
-		std::unique_ptr<IndexBuffer> m_IndexBuffer;
 		std::unique_ptr<Shader> m_Shader;
 		std::unique_ptr<Shader> m_PointLightShader;
 		std::unique_ptr<PerspectiveCamera> m_Camera;
 		std::unique_ptr<Texture> m_Texture1, m_Texture2;
+		std::unique_ptr<Mesh> m_Mesh;
 
 		// Light Properties
 		float m_LightPosition[3];
